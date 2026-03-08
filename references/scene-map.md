@@ -1,21 +1,29 @@
-# Scene Map
+# Scene Map (Generic Baseline)
 
 Overlay host base:
 - `http://<agent-lan-ip>:8787`
 
-## Baseline scenes and browser sources
+Asset base (default):
+- `/skills/streaming-obs-bootstrap/assets/overlays/`
 
-- Intro → `streaming/overlays/intro.html`
-- Main Live → `streaming/overlays/live-dashboard.html`
-- Work Mode → `streaming/overlays/work_status.html`
-- Presentation Mode → `streaming/overlays/presentation.html`
-- Civic Nexus Demo → `streaming/civic-nexus-demo.html`
-- Nexus Demo V2 → `streaming/civic-nexus-demo.html`
-- Analytics Dashboard → `streaming/overlays/analytics.html`
-- Chat Interaction → `streaming/overlays/chat.html`
-- BRB Screen → `streaming/overlays/brb.html`
-- Outro → `streaming/overlays/outro.html`
+## Baseline scenes and default overlays
 
-## Expected walkthrough order
+- Intro → `intro.html`
+- Main Live → `live-dashboard.html`
+- Work Mode → `work_status.html`
+- Presentation Mode → `presentation.html`
+- Feature Demo → `control-panel.html`
+- Metrics → `analytics.html`
+- Chat Interaction → `chat.html`
+- BRB Screen → `brb.html`
+- Outro → `outro.html`
 
-Intro → Main Live → Work Mode → Presentation Mode → Civic Nexus Demo → Nexus Demo V2 → Analytics Dashboard → Chat Interaction → BRB Screen → Outro
+## Default walkthrough order
+
+Intro → Main Live → Work Mode → Presentation Mode → Feature Demo → Metrics → Chat Interaction → BRB Screen → Outro
+
+## Customization guidance
+
+- Replace scene names freely to match your project.
+- Replace browser source URLs with your own overlays/apps.
+- Keep one “safe” scene for fallbacks when rebuilding.

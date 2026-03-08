@@ -5,7 +5,7 @@ HOLD_SECONDS="${1:-7}"
 
 mc() { mcporter call "$1" >/dev/null; }
 
-ORDER=("Intro" "Main Live" "Work Mode" "Presentation Mode" "Civic Nexus Demo" "Nexus Demo V2" "Analytics Dashboard" "Chat Interaction" "BRB Screen" "Outro")
+ORDER=("Intro" "Main Live" "Work Mode" "Presentation Mode" "Feature Demo" "Metrics" "Chat Interaction" "BRB Screen" "Outro")
 
 mc 'obs.set_current_scene(scene_name: "Intro")'
 mc 'obs.start_recording()'

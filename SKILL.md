@@ -1,31 +1,28 @@
 ---
 name: streaming-obs-bootstrap
-description: Rebuild and validate a reusable OBS streaming scene pack via agentic-obs and mcporter. Use when setting up or migrating streaming scenes (local or remote OBS), wiring browser overlays from workspace over LAN HTTP, running recording smoke tests, and troubleshooting browser-source rendering/emoji issues.
+description: Bootstrap and automate OBS scenes for local or remote instances via agentic-obs + mcporter. Use when an OpenClaw agent needs to create a reusable baseline scene pack, wire browser/media sources over LAN-safe HTTP, run recording/stream smoke tests, and provide a clean starting point for project-specific customization.
 ---
 
 # Streaming OBS Bootstrap
 
-Use this skill to quickly stand up a consistent streaming scene set on OBS and verify it with recording walkthroughs.
+Use this skill to create a generic, reusable OBS automation baseline.
 
 ## Prerequisites
 
-- `mcporter` installed and configured with `obs` MCP server
-- OBS WebSocket enabled on target host (default port `4455`)
-- Overlay files present in workspace (`streaming/overlays`)
+- `mcporter` installed/configured with `obs` MCP server
+- OBS WebSocket enabled on target OBS host (default `4455`)
+- `python3`, `sqlite3`, `ss` (iproute2), and standard shell tools
 
 ## Workflow
 
-1. Set target OBS host (local or LAN host)
-2. Start workspace HTTP server for overlays (LAN reachable)
-3. Rebuild baseline scene pack
-4. Attach overlay browser sources
-5. Apply transition preset and optional audio baseline
-6. Run recording smoke walkthrough and optional stream dry-run
-7. Share output path and any troubleshooting notes
+1. Switch target OBS host
+2. Start overlay HTTP server
+3. Rebuild baseline scene pack from skill assets
+4. Optionally apply transition + audio defaults
+5. Run recording smoke walkthrough
+6. Optionally run stream dry-run
 
 ## Commands
-
-Run from workspace root.
 
 ```bash
 # 1) Target OBS host
@@ -34,33 +31,32 @@ Run from workspace root.
 # 2) Start/verify overlay host server
 ./skills/streaming-obs-bootstrap/scripts/start_overlay_server.sh
 
-# 3) Rebuild scenes + attach overlays
+# 3) Rebuild baseline scenes + overlays
 ./skills/streaming-obs-bootstrap/scripts/rebuild_scenes.sh
 
 # 4) Apply transition preset
 ./skills/streaming-obs-bootstrap/scripts/apply_transition_preset.sh Fade 300
 
-# 5) Optional audio baseline (set OBS_AUDIO_INPUTS first)
+# 5) Optional audio baseline
 # export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 ./skills/streaming-obs-bootstrap/scripts/apply_audio_baseline.sh
 
-# 6) Run walkthrough recording (default 7s/scene)
+# 6) Run walkthrough recording
 ./skills/streaming-obs-bootstrap/scripts/smoke_test_walkthrough.sh
 
-# 7) Optional stream dry-run (default 15s)
+# 7) Optional stream dry-run
 ./skills/streaming-obs-bootstrap/scripts/stream_dry_run.sh 15 "Intro" "Main Live"
 ```
 
 ## Notes
 
-- Never use `/tmp` for persistent overlay assets.
-- Prefer `http://<agent-lan-ip>:8787/...` browser source URLs over `file://` for remote OBS.
-- Ensure HTML files declare UTF-8 and emoji-capable font stacks.
+- This skill is boilerplate-first; customize scenes and assets after bootstrap.
+- Avoid `/tmp` for persistent assets.
+- For remote OBS, prefer HTTP browser source URLs over `file://`.
 
-## Troubleshooting
+## References
 
-See:
-- `references/troubleshooting.md`
-- `references/networking.md`
 - `references/scene-map.md`
+- `references/networking.md`
+- `references/troubleshooting.md`
 - `references/v0.2-features.md`
