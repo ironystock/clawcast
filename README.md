@@ -49,6 +49,8 @@ Use defaults to bootstrap quickly, then customize scenes/sources for your own wo
 
 ## Quick start
 
+### Mode A: Installed as an OpenClaw skill
+
 Run from your OpenClaw workspace root.
 
 ```bash
@@ -75,9 +77,38 @@ export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 ./skills/clawcast/scripts/stream_dry_run.sh 15 "Intro" "Main Live"
 ```
 
+### Mode B: Running from a cloned GitHub repo
+
+Run from the cloned repo root.
+
+```bash
+# 1) Point to target OBS host
+./scripts/obs_target_switch.sh <obs-host-ip> 4455
+
+# 2) Start local overlay server (serves workspace root)
+./scripts/start_overlay_server.sh
+
+# 3) Build baseline scenes + overlays
+./scripts/rebuild_scenes.sh
+
+# 4) Optional transition defaults
+./scripts/apply_transition_preset.sh Fade 300
+
+# 5) Optional audio baseline
+export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
+./scripts/apply_audio_baseline.sh
+
+# 6) Smoke recording walkthrough
+./scripts/smoke_test_walkthrough.sh
+
+# 7) Optional short streaming dry-run
+./scripts/stream_dry_run.sh 15 "Intro" "Main Live"
+```
+
 ## Notes
 
-- Defaults use skill-bundled overlays under `skills/clawcast/assets/overlays/`.
+- Installed mode defaults to overlays under `skills/clawcast/assets/overlays/`.
+- Repo mode expects overlays under `assets/overlays/` in the cloned repo.
 - For remote OBS, HTTP URLs are usually more reliable than `file://` local-file browser sources.
 - You can replace baseline overlays with your own URLs/files after bootstrap.
 
