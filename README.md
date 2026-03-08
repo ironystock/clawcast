@@ -2,6 +2,23 @@
 
 Reusable, boilerplate-first skill for helping OpenClaw agents stand up and automate OBS scenes for **any** project (streams, demos, recordings, walkthroughs).
 
+## Install via chat (quickest path)
+
+Use these chat instructions with your OpenClaw agent:
+
+1. "Install the clawcast skill"
+2. "Target OBS at `<obs-host-ip>:4455`"
+3. "Run the clawcast baseline rebuild"
+4. "Run a recording smoke walkthrough"
+
+Equivalent CLI path:
+
+```bash
+# from workspace root
+openclaw skills install clawcast
+# then run scripts shown in Quick start below
+```
+
 ## North star
 
 This project is intentionally generic:
