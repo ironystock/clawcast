@@ -2,7 +2,7 @@
 set -euo pipefail
 
 IP="${1:-$(hostname -I | awk '{print $1}')}"
-BASE="http://$IP:8787/skills/streaming-obs-bootstrap/assets/overlays"
+BASE="http://$IP:8787/skills/clawcast/assets/overlays"
 
 mc() { mcporter call "$1" >/dev/null; }
 

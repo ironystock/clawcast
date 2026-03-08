@@ -1,9 +1,9 @@
 ---
-name: streaming-obs-bootstrap
+name: clawcast
 description: Bootstrap and automate OBS scenes for local or remote instances via agentic-obs + mcporter. Use when an OpenClaw agent needs to create a reusable baseline scene pack, wire browser/media sources over LAN-safe HTTP, run recording/stream smoke tests, and provide a clean starting point for project-specific customization.
 ---
 
-# Streaming OBS Bootstrap
+# ClawCast
 
 Use this skill to create a generic, reusable OBS automation baseline.
 
@@ -26,26 +26,26 @@ Use this skill to create a generic, reusable OBS automation baseline.
 
 ```bash
 # 1) Target OBS host
-./skills/streaming-obs-bootstrap/scripts/obs_target_switch.sh <obs-host-ip> 4455
+./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455
 
 # 2) Start/verify overlay host server
-./skills/streaming-obs-bootstrap/scripts/start_overlay_server.sh
+./skills/clawcast/scripts/start_overlay_server.sh
 
 # 3) Rebuild baseline scenes + overlays
-./skills/streaming-obs-bootstrap/scripts/rebuild_scenes.sh
+./skills/clawcast/scripts/rebuild_scenes.sh
 
 # 4) Apply transition preset
-./skills/streaming-obs-bootstrap/scripts/apply_transition_preset.sh Fade 300
+./skills/clawcast/scripts/apply_transition_preset.sh Fade 300
 
 # 5) Optional audio baseline
 # export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
-./skills/streaming-obs-bootstrap/scripts/apply_audio_baseline.sh
+./skills/clawcast/scripts/apply_audio_baseline.sh
 
 # 6) Run walkthrough recording
-./skills/streaming-obs-bootstrap/scripts/smoke_test_walkthrough.sh
+./skills/clawcast/scripts/smoke_test_walkthrough.sh
 
 # 7) Optional stream dry-run
-./skills/streaming-obs-bootstrap/scripts/stream_dry_run.sh 15 "Intro" "Main Live"
+./skills/clawcast/scripts/stream_dry_run.sh 15 "Intro" "Main Live"
 ```
 
 ## Notes

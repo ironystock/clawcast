@@ -4,7 +4,7 @@ Overlay host base:
 - `http://<agent-lan-ip>:8787`
 
 Asset base (default):
-- `/skills/streaming-obs-bootstrap/assets/overlays/`
+- `/skills/clawcast/assets/overlays/`
 
 ## Baseline scenes and default overlays
 

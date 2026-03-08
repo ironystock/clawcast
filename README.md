@@ -1,4 +1,4 @@
-# streaming-obs-bootstrap (OpenClaw Skill)
+# clawcast (OpenClaw Skill)
 
 Reusable, boilerplate-first skill for helping OpenClaw agents stand up and automate OBS scenes for **any** project (streams, demos, recordings, walkthroughs).
 
@@ -36,31 +36,31 @@ Run from your OpenClaw workspace root.
 
 ```bash
 # 1) Point to target OBS host
-./skills/streaming-obs-bootstrap/scripts/obs_target_switch.sh <obs-host-ip> 4455
+./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455
 
 # 2) Start local overlay server (serves workspace root)
-./skills/streaming-obs-bootstrap/scripts/start_overlay_server.sh
+./skills/clawcast/scripts/start_overlay_server.sh
 
 # 3) Build baseline scenes + overlays
-./skills/streaming-obs-bootstrap/scripts/rebuild_scenes.sh
+./skills/clawcast/scripts/rebuild_scenes.sh
 
 # 4) Optional transition defaults
-./skills/streaming-obs-bootstrap/scripts/apply_transition_preset.sh Fade 300
+./skills/clawcast/scripts/apply_transition_preset.sh Fade 300
 
 # 5) Optional audio baseline (set your own OBS input names)
 export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
-./skills/streaming-obs-bootstrap/scripts/apply_audio_baseline.sh
+./skills/clawcast/scripts/apply_audio_baseline.sh
 
 # 6) Smoke recording walkthrough
-./skills/streaming-obs-bootstrap/scripts/smoke_test_walkthrough.sh
+./skills/clawcast/scripts/smoke_test_walkthrough.sh
 
 # 7) Optional short streaming dry-run
-./skills/streaming-obs-bootstrap/scripts/stream_dry_run.sh 15 "Intro" "Main Live"
+./skills/clawcast/scripts/stream_dry_run.sh 15 "Intro" "Main Live"
 ```
 
 ## Notes
 
-- Defaults use skill-bundled overlays under `skills/streaming-obs-bootstrap/assets/overlays/`.
+- Defaults use skill-bundled overlays under `skills/clawcast/assets/overlays/`.
 - For remote OBS, HTTP URLs are usually more reliable than `file://` local-file browser sources.
 - You can replace baseline overlays with your own URLs/files after bootstrap.
 
