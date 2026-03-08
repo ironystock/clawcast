@@ -1,5 +1,16 @@
 # clawcast (OpenClaw Skill)
 
+## Start here: Install from GitHub (agent-facing)
+
+If your agent is not using ClawHub yet, install ClawCast directly from this GitHub repo.
+
+Tell your OpenClaw agent:
+1. "Clone `https://github.com/ironystock/clawcast` into my workspace skills folder as `skills/clawcast`."
+2. "Run `./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455`."
+3. "Run `./skills/clawcast/scripts/start_overlay_server.sh`."
+4. "Run `./skills/clawcast/scripts/rebuild_scenes.sh`."
+5. "Run `./skills/clawcast/scripts/smoke_test_walkthrough.sh`."
+
 Reusable, boilerplate-first skill for helping OpenClaw agents stand up and automate OBS scenes for **any** project (streams, demos, recordings, walkthroughs).
 
 ## Install via chat (quickest path)
