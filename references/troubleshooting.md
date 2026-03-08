@@ -1,27 +1,27 @@
 # Troubleshooting
 
-## Emoji render as broken boxes
+## Browser source blank on remote OBS
 
-- Ensure HTML includes:
-  - `<html lang="en">`
-  - `<meta charset="UTF-8">`
-- Use emoji-safe fonts in CSS stack:
-  - `'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji'`
+1. Confirm OBS host can reach `http://<agent-lan-ip>:8787/...`
+2. Prefer HTTP URLs over `file://` for remote OBS
+3. Recreate source with cache-busted URL (`?v=<timestamp>`)
+4. In OBS UI, disable browser-source hardware acceleration if rendering is unstable
 
-## Browser source blank
+## Recording start says success but output is not running
 
-1. Verify URL is LAN reachable from OBS host
-2. Avoid `file://` for remote OBS setups
-3. Recreate browser source with cache-busted URL (`?v=...`)
-4. In OBS Browser Source UI, disable hardware acceleration
+- Check OBS is not blocked by open settings dialogs
+- Verify Recording path/format in OBS settings
+- Run one manual start/stop in OBS, then retry automation
 
-## OBS connection fails
+## Audio not present in recordings
 
-- Confirm OBS open + WebSocket enabled on port 4455
-- Switch target in sqlite config via `obs_target_switch.sh`
-- Retry `mcporter call 'obs.get_obs_status()'`
+- Verify source exists and is unmuted
+- Verify source volume is not zero
+- Verify track routing in Advanced Audio Properties
+- For multi-scene music continuity, use one shared source duplicated across scenes
 
-## Smoke test outputs only test card
+## OBS connection failures
 
-- Re-run `rebuild_scenes.sh` to attach real overlays
-- Verify files exist under `streaming/overlays/`
+- Confirm OBS is running and WebSocket is enabled
+- Verify host/port in `obs_target_switch.sh`
+- Retry with `mcporter call 'obs.get_obs_status()'`

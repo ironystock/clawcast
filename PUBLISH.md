@@ -1,9 +1,11 @@
-# Publish Streaming OBS Bootstrap v0.2.0
+# Publish clawcast
+
+From this repo root:
 
 ```bash
-clawhub publish /home/brad/.openclaw/workspace/skills/streaming-obs-bootstrap \
-  --slug streaming-obs-bootstrap \
-  --name "Streaming OBS Bootstrap" \
+clawhub publish . \
+  --slug clawcast \
+  --name "ClawCast" \
   --version 0.2.0 \
-  --changelog "v0.2.0: adds transition preset helper, optional audio baseline tuning, stream dry-run helper, and expanded operator references."
+  --changelog "v0.2.0: generic OBS bootstrap skill with remote host switching, LAN overlay hosting, scene rebuild automation, walkthrough smoke test, transition/audio helpers, and troubleshooting references."
 ```
