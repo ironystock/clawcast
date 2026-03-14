@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/require_obs_mcp.sh"
+
 HOST="${1:-localhost}"
 PORT="${2:-4455}"
 DB_ARG="${3:-}"

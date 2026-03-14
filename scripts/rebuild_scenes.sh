@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/require_obs_mcp.sh"
+
 IP="${1:-$(hostname -I | awk '{print $1}')}"
 PORT="${OVERLAY_PORT:-8787}"
 BASE_PATH="${OVERLAY_BASE_PATH:-/assets/overlays}"

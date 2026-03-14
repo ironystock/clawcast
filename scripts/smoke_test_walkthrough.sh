@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/require_obs_mcp.sh"
+
 HOLD_SECONDS="${1:-7}"
 
 mc() { mcporter call "$1" >/dev/null; }
