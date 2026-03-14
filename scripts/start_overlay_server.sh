@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 OVERLAY_ROOT="$SKILL_ROOT/assets/overlays"
 PORT="${OVERLAY_PORT:-8787}"
-LOG_DIR="${OPENCLAW_WORKSPACE:-$SKILL_ROOT}/streaming-tests"
+LOG_DIR="$SKILL_ROOT/.runtime"
 LOG="$LOG_DIR/http-server.log"
 
 if [[ ! -d "$OVERLAY_ROOT" ]]; then

@@ -6,7 +6,7 @@ If your agent is not using ClawHub yet, install ClawCast directly from this GitH
 
 Tell your OpenClaw agent:
 1. "Clone `https://github.com/ironystock/clawcast` into my workspace skills folder as `skills/clawcast`."
-2. "Run `ALLOW_CROSS_COMPONENT_WRITE=1 AGENTIC_OBS_DB=\"$HOME/.agentic-obs/db.sqlite\" ./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455`."
+2. "Run `./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455 \"$HOME/.agentic-obs/db.sqlite\" --allow-cross-component-write`."
 3. "Run `./skills/clawcast/scripts/start_overlay_server.sh` (serves only this skill folder, not workspace root)."
 4. "Run `./skills/clawcast/scripts/rebuild_scenes.sh`."
 5. "Run `./skills/clawcast/scripts/smoke_test_walkthrough.sh`."
@@ -81,8 +81,8 @@ Run from your OpenClaw workspace root.
 
 ```bash
 # 1) Point to target OBS host (explicit cross-component write acknowledgement required)
-ALLOW_CROSS_COMPONENT_WRITE=1 AGENTIC_OBS_DB="$HOME/.agentic-obs/db.sqlite" \
-  ./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455
+./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455 \
+  "$HOME/.agentic-obs/db.sqlite" --allow-cross-component-write
 
 # 2) Start local overlay server (serves clawcast skill directory only)
 ./skills/clawcast/scripts/start_overlay_server.sh
@@ -110,8 +110,8 @@ Run from the cloned repo root.
 
 ```bash
 # 1) Point to target OBS host (explicit cross-component write acknowledgement required)
-ALLOW_CROSS_COMPONENT_WRITE=1 AGENTIC_OBS_DB="$HOME/.agentic-obs/db.sqlite" \
-  ./scripts/obs_target_switch.sh <obs-host-ip> 4455
+./scripts/obs_target_switch.sh <obs-host-ip> 4455 \
+  "$HOME/.agentic-obs/db.sqlite" --allow-cross-component-write
 
 # 2) Start local overlay server (serves clawcast repo directory only)
 ./scripts/start_overlay_server.sh
@@ -139,7 +139,7 @@ export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 - **OBS transport:** Control traffic uses OBS WebSocket on the host/port you set (default `4455`).
 - **Overlay transport:** Overlay pages are served over local HTTP (default `:8787`) for OBS Browser Sources.
 - **Scope lock:** `start_overlay_server.sh` serves the ClawCast skill/repo directory only (not workspace root).
-- **Cross-component write guard:** `obs_target_switch.sh` requires both `AGENTIC_OBS_DB` and `ALLOW_CROSS_COMPONENT_WRITE=1` before writing DB config.
+- **Cross-component write guard:** `obs_target_switch.sh` requires an explicit DB path argument plus `--allow-cross-component-write` before writing DB config.
 - **Trust boundary:** Run on trusted LAN/VPN only. Do not expose overlay HTTP or OBS WebSocket ports to the public internet.
 - **Secrets handling:** Do not commit `.env` files, tokens, or private endpoint credentials into this repo.
 - **Data profile:** The skill orchestrates scene/source configuration and local recording/stream actions; it does not phone home to third-party services by default.
@@ -148,11 +148,10 @@ export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 
 - `OVERLAY_PORT` (optional): HTTP port for overlay server (default `8787`)
 - `OVERLAY_BASE_PATH` (optional): overlay URL path used by rebuild script (default `/assets/overlays`)
-- `OPENCLAW_WORKSPACE` (optional): log output location for overlay server helper
-- `AGENTIC_OBS_DB` (required by `obs_target_switch.sh`): explicit path to target `agentic-obs` sqlite DB
-- `ALLOW_CROSS_COMPONENT_WRITE` (required by `obs_target_switch.sh`): must be `1` to confirm intentional DB write
 - `OBS_AUDIO_INPUTS` (optional): comma-separated OBS inputs for `apply_audio_baseline.sh`
 - `MIC_MUL` / `DESKTOP_MUL` (optional): volume multipliers for audio baseline helper
+
+`obs_target_switch.sh` uses explicit positional arguments for DB path and cross-component-write acknowledgement (no required env vars).
 
 All workflow scripts perform a fail-fast `mcporter call 'obs.get_obs_status()'` check before doing work.
 

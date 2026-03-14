@@ -4,14 +4,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 "$SCRIPT_DIR/require_obs_mcp.sh"
 
-HOST="${1:-localhost}"
+HOST="${1:-}"
 PORT="${2:-4455}"
-DB_ARG="${3:-}"
-DB="${DB_ARG:-${AGENTIC_OBS_DB:-}}"
+DB="${3:-}"
+ACK="${4:-}"
 
-if [[ -z "$DB" ]]; then
-  echo "ERROR: AGENTIC_OBS_DB is required (or pass DB path as arg 3)."
-  echo "Example: AGENTIC_OBS_DB=\"$HOME/.agentic-obs/db.sqlite\" ./scripts/obs_target_switch.sh 192.168.1.50 4455"
+if [[ -z "$HOST" || -z "$DB" ]]; then
+  echo "Usage: ./scripts/obs_target_switch.sh <obs-host> [obs-port] <agentic-obs-db-path> --allow-cross-component-write"
+  echo "Example: ./scripts/obs_target_switch.sh 192.168.1.50 4455 \"$HOME/.agentic-obs/db.sqlite\" --allow-cross-component-write"
   exit 1
 fi
 
@@ -20,9 +20,9 @@ if [[ ! -f "$DB" ]]; then
   exit 1
 fi
 
-if [[ "${ALLOW_CROSS_COMPONENT_WRITE:-0}" != "1" ]]; then
+if [[ "$ACK" != "--allow-cross-component-write" ]]; then
   echo "ERROR: This script writes to an external agentic-obs DB."
-  echo "Set ALLOW_CROSS_COMPONENT_WRITE=1 to confirm intentional config changes."
+  echo "Add explicit acknowledgement flag: --allow-cross-component-write"
   exit 1
 fi
 
