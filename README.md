@@ -116,6 +116,15 @@ export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 ./scripts/stream_dry_run.sh 15 "Intro" "Main Live"
 ```
 
+## Security & data transmission
+
+- **No bundled credentials:** This skill does not require API keys, tokens, or passwords in the repo.
+- **OBS transport:** Control traffic uses OBS WebSocket on the host/port you set (default `4455`).
+- **Overlay transport:** Overlay pages are served over local HTTP (default `:8787`) for OBS Browser Sources.
+- **Trust boundary:** Run on trusted LAN/VPN only. Do not expose overlay HTTP or OBS WebSocket ports to the public internet.
+- **Secrets handling:** Do not commit `.env` files, tokens, or private endpoint credentials into this repo.
+- **Data profile:** The skill orchestrates scene/source configuration and local recording/stream actions; it does not phone home to third-party services by default.
+
 ## Notes
 
 - Installed mode defaults to overlays under `skills/clawcast/assets/overlays/`.

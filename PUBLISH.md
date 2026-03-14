@@ -6,6 +6,6 @@ From this repo root:
 clawhub publish . \
   --slug clawcast \
   --name "ClawCast" \
-  --version 0.2.0 \
-  --changelog "v0.2.0: generic OBS bootstrap skill with remote host switching, LAN overlay hosting, scene rebuild automation, walkthrough smoke test, transition/audio helpers, and troubleshooting references."
+  --version 0.2.2 \
+  --changelog "v0.2.2: README install flow promoted to top, explicit security/data-transmission posture added, and release docs aligned for first-pass ClawHub security review."
 ```

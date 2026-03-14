@@ -54,6 +54,13 @@ Use this skill to create a generic, reusable OBS automation baseline.
 - Avoid `/tmp` for persistent assets.
 - For remote OBS, prefer HTTP browser source URLs over `file://`.
 
+## Security & transmission
+
+- No API keys/tokens are required by default for this skill.
+- OBS control uses the configured WebSocket endpoint (default port `4455`).
+- Overlay pages are served over local HTTP (`:8787`) and should remain on trusted LAN/VPN.
+- Do not expose OBS WebSocket or overlay HTTP ports publicly.
+
 ## References
 
 - `references/scene-map.md`
