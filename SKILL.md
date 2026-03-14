@@ -1,6 +1,6 @@
 ---
 name: clawcast
-description: Bootstrap and automate OBS scenes for local or remote instances via agentic-obs + mcporter. Use when an OpenClaw agent needs to create a reusable baseline scene pack, wire browser/media sources over LAN-safe HTTP, run recording/stream smoke tests, and provide a clean starting point for project-specific customization.
+description: Bootstrap and automate OBS scenes for local or remote instances via agentic-obs + mcporter. Includes optional explicit target-switch step that writes agentic-obs DB config only when acknowledged with a cross-component-write flag. Use when an OpenClaw agent needs to create a reusable baseline scene pack, wire browser/media sources over LAN-safe HTTP, run recording/stream smoke tests, and provide a clean starting point for project-specific customization.
 ---
 
 # ClawCast
@@ -35,8 +35,8 @@ If this fails, stop and finish `mcporter` + OBS MCP configuration first.
 
 ```bash
 # 1) Target OBS host (explicit write acknowledgement + DB path required)
-ALLOW_CROSS_COMPONENT_WRITE=1 AGENTIC_OBS_DB="$HOME/.agentic-obs/db.sqlite" \
-  ./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455
+./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455 \
+  "$HOME/.agentic-obs/db.sqlite" --allow-cross-component-write
 
 # 2) Start/verify overlay host server (serves skill directory only)
 ./skills/clawcast/scripts/start_overlay_server.sh
@@ -72,7 +72,7 @@ ALLOW_CROSS_COMPONENT_WRITE=1 AGENTIC_OBS_DB="$HOME/.agentic-obs/db.sqlite" \
 - OBS control uses the configured WebSocket endpoint (default port `4455`).
 - Overlay pages are served over local HTTP (`:8787`) and should remain on trusted LAN/VPN.
 - `start_overlay_server.sh` serves only the skill directory (not workspace root).
-- `obs_target_switch.sh` requires `AGENTIC_OBS_DB` + `ALLOW_CROSS_COMPONENT_WRITE=1` to confirm intentional cross-component config writes.
+- `obs_target_switch.sh` performs a cross-component config write only when given an explicit DB path argument plus `--allow-cross-component-write`.
 - Do not expose OBS WebSocket or overlay HTTP ports publicly.
 
 ## References
