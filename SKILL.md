@@ -25,10 +25,11 @@ Use this skill to create a generic, reusable OBS automation baseline.
 ## Commands
 
 ```bash
-# 1) Target OBS host
-./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455
+# 1) Target OBS host (explicit write acknowledgement + DB path required)
+ALLOW_CROSS_COMPONENT_WRITE=1 AGENTIC_OBS_DB="$HOME/.agentic-obs/db.sqlite" \
+  ./skills/clawcast/scripts/obs_target_switch.sh <obs-host-ip> 4455
 
-# 2) Start/verify overlay host server
+# 2) Start/verify overlay host server (serves skill directory only)
 ./skills/clawcast/scripts/start_overlay_server.sh
 
 # 3) Rebuild baseline scenes + overlays
@@ -61,6 +62,8 @@ Use this skill to create a generic, reusable OBS automation baseline.
 - No API keys/tokens are required by default for this skill.
 - OBS control uses the configured WebSocket endpoint (default port `4455`).
 - Overlay pages are served over local HTTP (`:8787`) and should remain on trusted LAN/VPN.
+- `start_overlay_server.sh` serves only the skill directory (not workspace root).
+- `obs_target_switch.sh` requires `AGENTIC_OBS_DB` + `ALLOW_CROSS_COMPONENT_WRITE=1` to confirm intentional cross-component config writes.
 - Do not expose OBS WebSocket or overlay HTTP ports publicly.
 
 ## References

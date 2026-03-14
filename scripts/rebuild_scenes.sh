@@ -2,7 +2,9 @@
 set -euo pipefail
 
 IP="${1:-$(hostname -I | awk '{print $1}')}"
-BASE="http://$IP:8787/skills/clawcast/assets/overlays"
+PORT="${OVERLAY_PORT:-8787}"
+BASE_PATH="${OVERLAY_BASE_PATH:-/assets/overlays}"
+BASE="http://$IP:$PORT$BASE_PATH"
 
 mc() { mcporter call "$1" >/dev/null; }
 

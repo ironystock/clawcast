@@ -10,7 +10,7 @@
 1. Confirm server listening:
    - `ss -ltnp | grep :8787`
 2. Confirm local reachability:
-   - `curl -I http://127.0.0.1:8787/streaming/overlays/intro.html`
+   - `curl -I http://127.0.0.1:8787/assets/overlays/intro.html`
 3. Confirm OBS target set:
    - `mcporter call 'obs.get_obs_status()'`
 
