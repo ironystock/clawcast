@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/require_obs_mcp.sh"
+
 SECONDS_ON_AIR="${1:-15}"
 START_SCENE="${2:-Intro}"
 MAIN_SCENE="${3:-Main Live}"

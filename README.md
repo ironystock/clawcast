@@ -52,11 +52,26 @@ Use defaults to bootstrap quickly, then customize scenes/sources for your own wo
 ## Prerequisites
 
 - OBS Studio running with WebSocket enabled (default port `4455`)
-- `mcporter` configured with an `obs` MCP server
+- `mcporter` installed and configured with an `obs` MCP server
 - `python3`
 - `sqlite3` (for OBS target switch script)
 - `iproute2` (`ss`) for local server checks
 - standard shell tools (`awk`, `grep`, `hostname`)
+
+## Prerequisite 0 (required): validate mcporter + OBS MCP before running scripts
+
+```bash
+# Must show mcporter is installed
+mcporter --help >/dev/null
+
+# Must show an obs-capable server in your setup
+mcporter list
+
+# Must succeed before any ClawCast workflow scripts
+mcporter call 'obs.get_obs_status()'
+```
+
+If the last command fails, finish your `mcporter`/OBS MCP setup first. ClawCast scripts now fail fast with this exact check.
 
 ## Quick start
 
@@ -138,6 +153,8 @@ export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 - `ALLOW_CROSS_COMPONENT_WRITE` (required by `obs_target_switch.sh`): must be `1` to confirm intentional DB write
 - `OBS_AUDIO_INPUTS` (optional): comma-separated OBS inputs for `apply_audio_baseline.sh`
 - `MIC_MUL` / `DESKTOP_MUL` (optional): volume multipliers for audio baseline helper
+
+All workflow scripts perform a fail-fast `mcporter call 'obs.get_obs_status()'` check before doing work.
 
 ## Asset packaging (required vs optional)
 

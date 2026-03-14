@@ -13,6 +13,15 @@ Use this skill to create a generic, reusable OBS automation baseline.
 - OBS WebSocket enabled on target OBS host (default `4455`)
 - `python3`, `sqlite3`, `ss` (iproute2), and standard shell tools
 
+## Prerequisite 0 (required): verify obs MCP path
+
+```bash
+mcporter list
+mcporter call 'obs.get_obs_status()'
+```
+
+If this fails, stop and finish `mcporter` + OBS MCP configuration first.
+
 ## Workflow
 
 1. Switch target OBS host

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/require_obs_mcp.sh"
+
 # Optional comma-separated input names via env:
 # export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 INPUTS_CSV="${OBS_AUDIO_INPUTS:-}"
