@@ -51,6 +51,8 @@ Use this skill to create a generic, reusable OBS automation baseline.
 ## Notes
 
 - This skill is boilerplate-first; customize scenes and assets after bootstrap.
+- Baseline-required overlays live in `assets/overlays/`.
+- Optional project-specific examples live in `examples/project-specific/`.
 - Avoid `/tmp` for persistent assets.
 - For remote OBS, prefer HTTP browser source URLs over `file://`.
 
