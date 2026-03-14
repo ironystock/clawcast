@@ -125,6 +125,26 @@ export OBS_AUDIO_INPUTS="Mic/Aux,Desktop Audio"
 - **Secrets handling:** Do not commit `.env` files, tokens, or private endpoint credentials into this repo.
 - **Data profile:** The skill orchestrates scene/source configuration and local recording/stream actions; it does not phone home to third-party services by default.
 
+## Asset packaging (required vs optional)
+
+### Required (kept generic)
+- `assets/overlays/intro.html`
+- `assets/overlays/live-dashboard.html`
+- `assets/overlays/work_status.html`
+- `assets/overlays/presentation.html`
+- `assets/overlays/control-panel.html`
+- `assets/overlays/analytics.html`
+- `assets/overlays/chat.html`
+- `assets/overlays/brb.html`
+- `assets/overlays/outro.html`
+
+These power the default baseline scene map used by `scripts/rebuild_scenes.sh`.
+
+### Optional examples (project-specific)
+- `examples/project-specific/*`
+
+These are not required for the baseline workflow and are provided only as adaptation references.
+
 ## Notes
 
 - Installed mode defaults to overlays under `skills/clawcast/assets/overlays/`.
