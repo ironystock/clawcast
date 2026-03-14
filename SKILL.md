@@ -1,6 +1,7 @@
 ---
 name: clawcast
 description: Bootstrap and automate OBS scenes for local or remote instances via agentic-obs + mcporter. Includes optional explicit target-switch step that writes agentic-obs DB config only when acknowledged with a cross-component-write flag. Use when an OpenClaw agent needs to create a reusable baseline scene pack, wire browser/media sources over LAN-safe HTTP, run recording/stream smoke tests, and provide a clean starting point for project-specific customization.
+metadata: {"openclaw":{"emoji":"🎬","homepage":"https://github.com/ironystock/clawcast","requires":{"bins":["mcporter","python3","sqlite3","ss"]}}}
 ---
 
 # ClawCast
